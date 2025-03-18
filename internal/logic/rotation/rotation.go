@@ -57,3 +57,26 @@ func (s *sRotation) Update(ctx context.Context, in model.RotationUpdateInput) er
 		return err
 	})
 }
+
+func (s *sRotation) GetList(ctx context.Context, in model.RotationGetListInput) (out *model.RotationGetListOutput, err error) {
+	m := dao.RotationInfo.Ctx(ctx)
+	out = &model.RotationGetListOutput{
+		Page: in.Page,
+		Size: in.Size,
+	}
+
+	listModel := m.Page(in.Page, in.Size)
+
+	out.Total, err = m.Count()
+
+	if err != nil || out.Total == 0 {
+		return out, err
+	}
+
+	out.List = make([]model.RotationGetListOutputItem, 0, in.Size)
+
+	if err := listModel.Scan(&out.List); err != nil {
+		return out, err
+	}
+	return
+}

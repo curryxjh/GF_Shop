@@ -27,4 +27,19 @@ type RotationUpdateReq struct {
 	Sort   int    `json:"sort" dc:"排序"`
 }
 
-type RotationUpdateRes struct{}
+type RotationUpdateRes struct {
+	Id uint `json:"id"`
+}
+
+type RotationGetListCommonReq struct {
+	g.Meta `path:"/rotation/list" method:"get" tags:"轮播图" summary:"List rotation api"`
+	Sort   int `json:"sort" in:"query" dc:"排序类型"`
+	CommonPaginationReq
+}
+
+type RotationGetListCommonRes struct {
+	List  interface{} `json:"list" ds:"列表"`
+	Page  int         `json:"page" ds:"分页码"`
+	Size  int         `json:"size" ds:"分页数量"`
+	Total int         `json:"total" ds:"数据总数"`
+}
