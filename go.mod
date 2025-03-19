@@ -4,7 +4,10 @@ go 1.22.0
 
 toolchain go1.24.0
 
-require github.com/gogf/gf/v2 v2.8.3
+require (
+	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.8.3
+	github.com/gogf/gf/v2 v2.8.3
+)
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
@@ -16,7 +19,6 @@ require (
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sql-driver/mysql v1.9.0 // indirect
-	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.8.3 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/grokify/html-strip-tags-go v0.1.0 // indirect
@@ -31,11 +33,8 @@ require (
 	go.opentelemetry.io/otel/metric v1.34.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.34.0 // indirect
 	go.opentelemetry.io/otel/trace v1.34.0 // indirect
-	golang.org/x/mod v0.23.0 // indirect
 	golang.org/x/net v0.35.0 // indirect
-	golang.org/x/sync v0.11.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
-	golang.org/x/tools v0.30.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
