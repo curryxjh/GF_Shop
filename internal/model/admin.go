@@ -20,7 +20,7 @@ type AdminCreateOutput struct {
 
 type AdminUpdateInput struct {
 	AdminCreateUpdateBase
-	Id int
+	Id uint
 }
 
 type AdminGetListInput struct {

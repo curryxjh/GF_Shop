@@ -14,15 +14,39 @@ type AdminRes struct {
 	AdminId int `json:"admin_id"`
 }
 
-type AdminUpdateReq struct{}
+type AdminDeleteReq struct {
+	g.Meta `path:"/admin/delete" method:"delete" tags:"Admin" summary:"delete admin api"`
+	Id     uint `v:"min:1#请选择需要删除的管理员" dc:"管理员id"`
+}
 
-type AdminUpdateRes struct{}
+type AdminDeleteRes struct{}
+type AdminUpdateReq struct {
+	g.Meta   `path:"/admin/update/{Id}" method:"post" summary:"update admin api"`
+	Id       uint   `json:"id"      v:"min:1#请选择需要修改的管理员" dc:"管理员Id"`
+	Name     string `json:"name" v:"required#用户名不能为空" dc:"用户名"`
+	Password string `json:"password"    v:"required#密码不能为空" dc:"密码"`
+	RoleIds  string `json:"role_ids"    dc:"角色ids"`
+	IsAdmin  int    `json:"is_admin"    dc:"是否超级管理员"`
+}
 
-type AdminGetListCommonReq struct{}
+type AdminUpdateRes struct {
+	Id uint `json:"id"`
+}
 
-type AdminGetListCommonRes struct{}
+type AdminGetListCommonReq struct {
+	g.Meta `path:"/admin/list" method:"get" tags:"管理员" summary:"管理员列表接口"`
+	CommonPaginationReq
+}
 
-type AdminGetInfoReq struct{}
+type AdminGetListCommonRes struct {
+	List  interface{} `json:"list" description:"列表"`
+	Page  int         `json:"page" description:"分页码"`
+	Size  int         `json:"size" description:"分页数量"`
+	Total int         `json:"total" description:"数据总数"`
+}
+type AdminGetInfoReq struct {
+	g.Meta `path:"/admin/info" method:"get"`
+}
 
 // jwt
 //type AdminGetInfoRes struct {
