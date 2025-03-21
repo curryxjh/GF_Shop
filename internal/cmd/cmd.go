@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"GF_Shop/internal/controller"
+	"GF_Shop/internal/service"
 	"context"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -18,10 +19,15 @@ var (
 			s := g.Server()
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
+				group.Middleware(
+					service.Middleware().Ctx,
+					service.Middleware().ResponseHandler,
+				)
 				group.Bind(
 					controller.Rotation,
 					controller.Position,
 					controller.Admin,
+					controller.Login,
 				)
 			})
 			s.Run()
